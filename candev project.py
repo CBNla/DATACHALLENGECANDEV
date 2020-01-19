@@ -43,8 +43,12 @@ def make_form(numbers_1,numbers_2,times):
 def make_graph(numbers_1,numbers_2):
     start_x =0
     start_y = 250
-    unit_x = 500/len(numbers_1)
-    if(numbers_1[-1]>>numbers_2[-1]):
+    
+    if(len(numbers_1)>len(numbers_2)):
+        unit_x = 500/len(numbers_1)
+    else:
+        unit_x = 500/len(numbers_2)
+    if(numbers_1[-1]>numbers_2[-1]):
         unit_y = 250/numbers_1[-1]
     else:
         unit_y = 250/numbers_2[-1]
@@ -62,11 +66,15 @@ def make_graph(numbers_1,numbers_2):
         
     start_x =0
     start_y = 250
-    unit_x = 500/len(numbers_1)
+    if(len(numbers_1)>len(numbers_2)):
+        unit_x = 500/len(numbers_1)
+    else:
+        unit_x = 500/len(numbers_2)
     if(numbers_1[-1]>numbers_2[-1]):
         unit_y = 250/numbers_1[-1]
     else:
         unit_y = 250/numbers_2[-1]
+    
     
     for position in range(len(numbers_2)):  #draw line 2 part
         next_x = start_x+unit_x*position  #x keep increasing
