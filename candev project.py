@@ -23,6 +23,10 @@ def update_data_ND(new_data_list):#replace old data to new data
     data_list_ND = new_data_list
     return
 
+def update_time(new_data_list):#replace old data to new data
+    time_list = new_data_list
+    return
+
 def make_form(numbers_1,numbers_2,numbers_3,numbers_4,times):
     start_x =0
     start_y = 50
