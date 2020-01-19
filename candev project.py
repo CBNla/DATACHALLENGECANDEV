@@ -1,11 +1,11 @@
 
 from tkinter import*
 
-data_list_AS = [10,20,200,200,400]
-data_list_AD = [0,10,50,200,500]
-data_list_NS = [100,100,100,100,100]
-data_list_ND = [200,200,200,200,200]
-time_list = ["2020/1/9","2020/1/10","2020/1/11","2020/1/12","2020/1/13"]
+data_list_AS = [10,20,200,200,400]#Alberta power supply
+data_list_AD = [0,10,50,200,500]#Alberta power demand
+data_list_NS = [100,100,100,100,100]#Nova Scotia power supply
+data_list_ND = [200,200,200,200,200]#Nova Scotia power demand
+time_list = ["2020/1/9","2020/1/10","2020/1/11","2020/1/12","2020/1/13"]#time
 
 def update_data_AS(new_data_list):#replace old data to new data
     data_list_AS = new_data_list
@@ -44,6 +44,7 @@ def make_form(numbers_1,numbers_2,numbers_3,numbers_4,times):
     canvas_tk.create_text(250,75,text="power demand")
     canvas_tk.create_text(350,75,text="power supply")
     canvas_tk.create_text(450,75,text="power demand")
+    canvas_tk.create_text(30,75,text="P unit: MW")
     
     for position in range(int((len(numbers_1)*50)/50)):
         next_y = start_y+unit_y
@@ -81,7 +82,7 @@ def make_graph(numbers_1,numbers_2,numbers_3,numbers_4):
     canvas_tk.create_line(0,250,500,250,fill = "red")#x-axis
     canvas_tk.create_line(0,0,5,500,fill = "red")#y-axis
     
-    for position in range(len(numbers_1)):  #draw line 1 part
+    for position in range(len(numbers_1)):  #draw line AS part
         next_x = start_x+unit_x*position  #x keep increasing
         next_y = start_y-unit_y*numbers_1[position] # y keep decreasing
         canvas_tk.create_line(start_x,start_y,next_x,next_y,fill = "black")
@@ -92,7 +93,7 @@ def make_graph(numbers_1,numbers_2,numbers_3,numbers_4):
     start_y = 250
     
     
-    for position in range(len(numbers_2)):  #draw line 2 part
+    for position in range(len(numbers_2)):  #draw line AD part
         next_x = start_x+unit_x*position  #x keep increasing
         next_y = start_y-unit_y*numbers_2[position] # y keep decreasing
         canvas_tk.create_line(start_x,start_y,next_x,next_y,fill = "grey")
@@ -103,7 +104,7 @@ def make_graph(numbers_1,numbers_2,numbers_3,numbers_4):
     start_x =0
     start_y = 250
 
-    for position in range(len(numbers_3)):  #draw line 3 part
+    for position in range(len(numbers_3)):  #draw line NS part
         next_x = start_x+unit_x*position  #x keep increasing
         next_y = start_y-unit_y*numbers_3[position] # y keep decreasing
         canvas_tk.create_line(start_x,start_y,next_x,next_y,fill = "blue")
@@ -114,7 +115,7 @@ def make_graph(numbers_1,numbers_2,numbers_3,numbers_4):
     start_x =0
     start_y = 250
 
-    for position in range(len(numbers_4)):  #draw line 4 part
+    for position in range(len(numbers_4)):  #draw line ND part
         next_x = start_x+unit_x*position  #x keep increasing
         next_y = start_y-unit_y*numbers_4[position] # y keep decreasing
         canvas_tk.create_line(start_x,start_y,next_x,next_y,fill = "purple")
