@@ -26,21 +26,21 @@ soup = BeautifulSoup(page, 'html.parser')
 
 #################################################################
 updated=soup.find(string=re.compile("Last Update")) #re.compile lets us search using just part of the string
-print(updated)
+
 #keep only the date and time
 updated=updated.strip("Last Update :")
-print(updated)
+
 #################################################################
 summary = soup.find("b").find_previous("table") #, re.compile("^SUMMARY"))
 summary_table = get_table(summary)
 del summary_table[0]
 ##################################################################
-df=pd.DataFrame(columns=['Summary','Energy'])
-for sublist in summary_table:
-    print(sublist)
-    df=df.append({'Summary':sublist[0],'Energy':sublist[1]}, ignore_index=True)
-    
-df.to_csv('AESO_Summary_'+updated+'.csv',index=False,encoding='cp1252')
+df=pd.DataFrame(columns=['Time','Supply','Demand'])
+final_table =[]
+final_table.append(summary_table[0][1])
+final_table.append(summary_table[2][1])
+df=df.append({'Time' : updated, 'Supply':final_table[0],'Demand':final_table[1]}, ignore_index=True)
+df.to_csv('alberta.csv',index=False,encoding='cp1252')
 
 
 

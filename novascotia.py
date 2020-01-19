@@ -28,9 +28,9 @@ name_box2 = name_box2.strip("MW available capacity")
 table = []
 table.append(name_box)
 table.append(name_box2)
-print(table)
 
-df=pd.DataFrame(columns=['Demand (MW)','Supply (MW)'])
-df=df.append({'Demand (MW)':table[0],'Supply (MW)':table[1]}, ignore_index=True)
+
+df1=pd.DataFrame(columns=['Time','Demand','Supply'])
+df1=df1.append({'Time' : date_box,'Demand':table[0],'Supply':table[1]}, ignore_index=True)
     
-df.to_csv('NovaScotia_'+date_box+'.csv',index=False,encoding='cp1252')
+df1.to_csv('novaScotia.csv',index=False,encoding='cp1252')
